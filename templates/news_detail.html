@@ -1,0 +1,13 @@
+{% extends "layout.html" %} {% block content %}
+<div class="card my-4">
+    <div class="card-header">
+        {{news.title}}
+    </div>
+    <div class="card-body ">
+        <blockquote class="blockquote mb-0">
+            <p>{{news.text}}</p>
+            <footer class="blockquote-footer">{{news.author}} <cite title="Source Title"> Labeled {% if news.label %}Trusted{% else %}Untrusted{% endif %}</cite></footer>
+        </blockquote>
+    </div>
+</div>
+{% endblock %}

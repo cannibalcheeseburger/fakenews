@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% load static %}
+{% block content %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'news-block.css' %}">
+<div class="detailed-news">
+    <div class="detail-header">
+        {{news.title}}
+    </div>
+    <div class="detail-body">
+        <blockquote class="blockquote mb-0">
+            <p class="text-paragraph">{{news.text}}</p>
+            <footer class="blockquote-footer">{{news.author}} <cite title="Source Title"> Labeled {% if news.label %}Trusted{% else %}Untrusted{% endif %}</cite></footer>
+        </blockquote>
+    </div>
+</div>
+{% endblock %}
+{% endblock %}

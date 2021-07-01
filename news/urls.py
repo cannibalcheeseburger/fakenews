@@ -1,6 +1,5 @@
-from django.urls import path
 from news.views import HomeListView,NewsDetailView
-
+from django.urls import path,include
 #AgendaDetailView,
 
 urlpatterns = [

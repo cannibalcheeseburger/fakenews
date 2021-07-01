@@ -1,0 +1,20 @@
+
+#site-name {
+  font-family: 'Exo 2', sans-serif;
+font-size: 36px;
+margin-right: 45rem;
+}
+.brand-image {
+  margin-left: 40px;
+}
+
+.btn-style {
+  margin: 0px 14px;
+}
+#leftmost {
+  margin-right:4em;
+}
+
+.navbar {
+    margin-bottom:2rem;
+}

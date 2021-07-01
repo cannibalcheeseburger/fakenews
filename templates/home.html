@@ -1,14 +1,26 @@
-{% extends "layout.html" %} {% block content %} {% for new in news%}
-<a href={% url 'news_detail' new.id%}>
-    <div class="card my-4">
-        <div class="card-header">
-            {{new.date}}
+ {% extends "layout.html" %} {% load static %} {% block content %} {% block styles %}
+
+
+<link rel="stylesheet" href="{% static 'news-block.css' %}">
+
+<div class="container">
+    <div class="row gy-5 overflow-hidden">
+        <!--        {% for new in news%}-->
+
+        <div class="col-6">
+            <div class="data-row">
+                <a href={% url 'news_detail' new.id%} style="display:inline-block; text-decoration:none">
+                    <p id="title">{{new.title}}</p>
+                </a>
+                <span id="date">
+             {{new.date}}
+           </span>
+                <div id="author" align="right">—  {{new.author}} </div>
+            </div>
         </div>
-        <div class="card-body ">
-            <blockquote class="blockquote mb-0">
-                <p>{{new.title}}</p>
-                <footer class="blockquote-footer">{{new.author}} <cite title="Source Title"></cite></footer>
-            </blockquote>
-        </div>
+
+
+        <!-- {% endfor %}-->
     </div>
-</a> {% endfor %} {% endblock %}
+</div>
+{% endblock %} {% endblock %}

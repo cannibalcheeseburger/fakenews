@@ -1,13 +1,20 @@
-{% extends "layout.html" %} {% block content %}
-<div class="card my-4">
-    <div class="card-header">
+{% extends "layout.html" %} {% load static %} {% block content %} {% block styles %}
+<link rel="stylesheet" href="{% static 'news-block.css' %}">
+<div class="detailed-news">
+    <div class="detail-header">
         {{news.title}}
     </div>
-    <div class="card-body ">
+    <img src="https://source.unsplash.com/1200x500/?politics,sports">
+    <div class="detail-body">
         <blockquote class="blockquote mb-0">
-            <p>{{news.text}}</p>
-            <footer class="blockquote-footer">{{news.author}} <cite title="Source Title"> Labeled {% if news.label %}Trusted{% else %}Untrusted{% endif %}</cite></footer>
+            <p class="text-paragraph">{{news.text}}</p>
+            <footer class="blockquote-footer">{{news.author}} <cite title="Source Title"> Labeled 
+                {% if news.label %}
+                Trusted
+                {% else %}
+                Untrusted
+                {% endif %}</cite></footer>
         </blockquote>
     </div>
 </div>
-{% endblock %}
+{% endblock %} {% endblock %}

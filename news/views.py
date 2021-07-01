@@ -7,7 +7,7 @@ class HomeListView(ListView):
     model = News
     template_name = 'home.html'
     context_object_name = 'news'
-    queryset = News.objects.order_by('-date')[:10]
+    queryset = News.objects.order_by('-date')[:15]
     
 class NewsDetailView(DetailView):
     model = News

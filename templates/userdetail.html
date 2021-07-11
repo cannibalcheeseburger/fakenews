@@ -1,0 +1,179 @@
+
+{% extends "layout.html" %}
+{% load static %}
+
+{% block content %}
+{% block styles %}
+
+
+    <link rel="stylesheet" href="{% static 'news-block.css' %}">
+
+
+<style>
+
+
+    .col-8 {
+    font-family: "Spartan",sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 35px;
+    font-weight: 750;
+}
+
+.col-4 {
+    padding-top: 5px;
+    text-align:right;
+}
+    .row {
+    margin: 10px 5px ;
+}
+.input-group-text {
+    font-family: "Spartan",sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    border-radius: 5px;
+        color: #7b7e82;
+        background-color:#fff;
+    width: 120px;
+    height: 45px;
+    border: none;
+    outline: none;
+
+}
+
+.col-7 {
+    padding-top: 10px;
+}
+
+.col {
+    padding-top : 4px;
+}
+
+.styling {
+    font-family: "Spartan",sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 5px;
+    width: 135px;
+    height: 50px;
+    border: none;
+    outline: none;
+}
+
+
+</style>
+<div align="right" style="margin-right:4.2rem;"><button class="btn btn-dark" ><i class="fas fa-long-arrow-alt-left"></i></button></div>
+
+<div class="container">
+      <div class="row">
+        <div class="col-8">Your Articles</div>
+        <div class="col-4" >
+          <button type="button" class="btn rounded-pill btn-primary  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus-circle"></i> New Article
+          </button>
+        </div>
+      </div>
+
+      <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              New Article
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+
+          <div class="modal-body">
+            <div class="container">
+
+              <div class="row">
+                <div class="col-5">
+                  <span class="input-group-text">Article Title :</span>
+                </div>
+              </div>
+                <div class="row">
+                    <div class="col">
+                         <textarea id="modal-title" style="margin-left:1rem;" cols="50" rows="3" name="notes">Write title here...
+
+                  </textarea>
+                    </div>
+                </div>
+
+
+              <div class="row">
+                <div class="col-5">
+                  <span class="input-group-text">Content :</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col">
+                  <textarea id="modal-content" style="margin-left:1rem;" cols="50" rows="7" name="notes">Write content here...
+
+                  </textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button onClick="changevalues()"
+              type="button"
+              class="btn btn-secondary styling"
+              data-bs-dismiss="modal"
+            >
+              Discard
+            </button >
+            <button type="submit" onClick={} class="btn btn-primary styling " data-bs-dismiss="modal" >
+              Save & Send
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+</div>
+
+<div class="container" >
+    <div class="row gy-5 overflow-hidden">
+<!--        {% for new in news%}-->
+
+    <div class="col-6" >
+     <div class="data-row">
+          <a href={% url 'news_detail' new.id %} style="display:inline-block; text-decoration:none">
+       <p id="title">{{new.title}}</p>
+            </a>
+     <span id="date">
+             {{new.date}}
+           </span> <div id="author" align="right">—  {{new.author}} </div>
+     </div>
+   </div>
+
+
+<!-- {% endfor %}-->
+    </div>
+</div>
+
+<script>
+       var title_change= document.getElementById("modal-title");
+        var content_change = document.getElementById("modal-content");
+
+        function changevalues() {
+            title_change.value = "Write title here...";
+            content_change.value = "Write content here...";
+        }
+</script>
+ {% endblock %}
+ {% endblock %}

@@ -22,7 +22,7 @@
   </head>
   <body style=" background-color: #f8f9fa;">
 
-    <nav class="navbar  navbar-light" style="background-color: #e9ecef;">
+    <nav id="top-heading" class="navbar  navbar-light" style="background-color: #e9ecef;">
       <div class=" aligning container-fluid">
         <div class="navbar-brand brand-image">
           <img  src="{% static 'completed.png' %}" alt="" width="50" height="40" class="d-inline-block align-text-top">
@@ -33,11 +33,36 @@
           Times Cryptic
         </span>
         <div class="d-flex">
+          {% if not request.user.is_authenticated %}
           <button onclick="location.href = '{% url 'login' %}';"  class="btn btn-sm btn-outline-secondary btn-style" type="button">Login</button>
           <button onclick="location.href = '{% url 'register' %}';" id="leftmost" class="btn btn-sm btn-outline-secondary btn-style" type="button">SignUp</button>
+          {% elif request.path == "/user/" %}
+           <span style="
+          font-family: 'Benne',sans-serif;
+          margin-right: 1rem;
+          font-size: 25px;
+          font-weight: 400;"> Hey {{request.user}}! </span>
+          <button onclick="location.href = '{% url 'logout' %}';"  class="btn btn-sm btn-outline-secondary btn-style" type="button">Logout</button>
+
+
+
+
+          {% else %}
+
+          <span style="
+          font-family: 'Benne',sans-serif;
+          margin-right: 1rem;
+          font-size: 25px;
+          font-weight: 400;"> Hey {{request.user}}! </span>
+          <button onclick="location.href = '{% url 'user' %}';"  class="btn btn-sm btn-outline-secondary btn-style" type="button">Profile</button>
+
+          {% endif %}
+
         </div>
       </div>
     </nav>
+  <button style="position:fixed; bottom:18px ; right:67px; " onclick="location.href = '#top-heading';" type="button" class="btn rounded-pill btn-outline-info"><i class="fas fa-arrow-up"></i></button>
+    </button>
     {% block content %}
     {% endblock %}
 

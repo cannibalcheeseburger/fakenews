@@ -1,4 +1,4 @@
-from news.views import HomeListView,NewsDetailView,loginView,registerView,logoutUser,UserListView
+from news.views import HomeListView,NewsDetailView,loginView,registerView,logoutUser,UserListView,NewNewsCreate
 from django.urls import path,include
 
 
@@ -9,5 +9,6 @@ urlpatterns = [
     path('register/', registerView, name='register'),
     path('logout/',logoutUser, name='logout'),
     path('user/', UserListView.as_view(), name='user'),
+    path('form/', NewNewsCreate.as_view(), name='newscreate')
 
 ]

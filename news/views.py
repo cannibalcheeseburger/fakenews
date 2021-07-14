@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
-from .models import News
+from django.views.generic.edit import CreateView
+from .models import News, UnratedNews
 from django.views.generic import ListView,DetailView
 from django.contrib.auth.forms import UserCreationForm
 from .forms import CreateUserForm
@@ -47,10 +48,24 @@ def registerView(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 class UserListView(ListView):
     model = News
     template_name = 'userdetail.html'
     context_object_name = 'news'
-    queryset = News.objects.order_by('-date')[:15]
+    queryset = News.objects.order_by('-date')[:4]
+
+
+class NewNewsCreate(CreateView):
+    model = UnratedNews
+    fields = ['title', 'text']
+    success_url = '/user'
+
+    # def form_valid(self, form):
+    #     obj = form.save(commit=False)
+    #     obj.author = self.request.user
+    #     obj.save()
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)

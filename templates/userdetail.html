@@ -62,90 +62,20 @@
 
 
 </style>
-<div align="right" style="margin-right:4.2rem;"><button class="btn btn-dark" ><i class="fas fa-long-arrow-alt-left"></i></button></div>
+<div align="right" style="margin-right:4.2rem;"><button onclick="location.href = '{% url 'home' %}';" class="btn btn-dark" ><i class="fas fa-long-arrow-alt-left"></i></button></div>
 
 <div class="container">
       <div class="row">
         <div class="col-8">Your Articles</div>
         <div class="col-4" >
-          <button type="button" class="btn rounded-pill btn-primary  " data-bs-toggle="modal" data-bs-target="#exampleModal">
+          <button type="button" class="btn rounded-pill btn-primary " onclick="location.href = '{% url 'newscreate' %}';">
             <i class="fas fa-plus-circle"></i> New Article
           </button>
         </div>
       </div>
 
-      <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">
-              New Article
-            </h5>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-
-          <div class="modal-body">
-            <div class="container">
-
-              <div class="row">
-                <div class="col-5">
-                  <span class="input-group-text">Article Title :</span>
-                </div>
-              </div>
-                <div class="row">
-                    <div class="col">
-                         <textarea id="modal-title" style="margin-left:1rem;" cols="50" rows="3" name="notes">Write title here...
-
-                  </textarea>
-                    </div>
-                </div>
-
-
-              <div class="row">
-                <div class="col-5">
-                  <span class="input-group-text">Content :</span>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col">
-                  <textarea id="modal-content" style="margin-left:1rem;" cols="50" rows="7" name="notes">Write content here...
-
-                  </textarea>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button onClick="changevalues()"
-              type="button"
-              class="btn btn-secondary styling"
-              data-bs-dismiss="modal"
-            >
-              Discard
-            </button >
-            <button type="submit" onClick={} class="btn btn-primary styling " data-bs-dismiss="modal" >
-              Save & Send
-            </button>
-          </div>
-
-        </div>
-
-      </div>
-    </div>
 
 </div>
-
 <div class="container" >
     <div class="row gy-5 overflow-hidden">
 <!--        {% for new in news%}-->
@@ -166,14 +96,6 @@
     </div>
 </div>
 
-<script>
-       var title_change= document.getElementById("modal-title");
-        var content_change = document.getElementById("modal-content");
 
-        function changevalues() {
-            title_change.value = "Write title here...";
-            content_change.value = "Write content here...";
-        }
-</script>
  {% endblock %}
  {% endblock %}

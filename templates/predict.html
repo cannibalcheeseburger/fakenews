@@ -1,0 +1,26 @@
+ {% extends "layout.html" %} {% load static %} {% block content %} {% block styles %}
+
+
+<link rel="stylesheet" href="{% static 'news-block.css' %}">
+
+<form action="{% url 'predict_news' %}" method="post">
+    {% csrf_token %} {{ form }}
+    <input type="submit" value="Submit">
+</form>
+
+{% if News %}
+<div class="container">
+    <div class="row gy-5 overflow-hidden">
+        <div class="col-6">
+            <div class="data-row">
+                <a style="display:inline-block; text-decoration:none">
+                    <p id="title">{{News}}</p>
+                </a>
+                </span>
+                <div id="label" align="right">—  {% if label %} Untrusted {% else %} Trusted {% endif %}</div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %} {% endblock %} {% endblock %}

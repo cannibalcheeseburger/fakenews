@@ -9,6 +9,8 @@ ipython = "*"
 django-extensions = "*"
 pandas = "*"
 pywin32 = "*"
+nltk = "*"
+tensorflow = "*"
 
 [dev-packages]
 

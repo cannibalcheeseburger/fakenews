@@ -10,9 +10,9 @@
             <p class="text-paragraph">{{news.text}}</p>
             <footer class="blockquote-footer">{{news.author}} <cite title="Source Title"> Labeled 
                 {% if news.label %}
-                Trusted
-                {% else %}
                 Untrusted
+                {% else %}
+                Trusted
                 {% endif %}</cite></footer>
         </blockquote>
     </div>

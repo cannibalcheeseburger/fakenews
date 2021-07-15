@@ -1,9 +1,13 @@
-from django.shortcuts import render,HttpResponseRedirect
 from tensorflow.python.eager.context import context
 from .models import News
-from django.views.generic import ListView,DetailView
 from .src.predict import predict_class
-from .forms import NewsForm
+from django.shortcuts import render,redirect
+from django.views.generic.edit import CreateView
+from django.views.generic import ListView,DetailView
+from django.contrib.auth.forms import UserCreationForm
+from .forms import CreateUserForm,NewsForm,NewNewsForm
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
 
 # Create your views here.
 class HomeListView(ListView):
@@ -17,17 +21,62 @@ class NewsDetailView(DetailView):
     template_name = 'news_detail.html'
     context_object_name = 'news'
 
+    
+def loginView(request):
+    context= {}
+    if request.method=="POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.info(request,"Username or Password is incorrect")
+            return render(request, 'login.html', context)
+    return render(request,'login.html',context)
 
-def PredictNews(request):
+def registerView(request):
+    form = CreateUserForm()
+    if request.method == "POST":
+        form = CreateUserForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+            user = form.cleaned_data.get('username')
+            messages.success(request,"Accout Created Successfully")
+            return redirect('login')
+    context= {'form':form}
+    return render(request,'register.html',context)
+
+def logoutUser(request):
+    logout(request)
+    return redirect('home')
+
+def self_article(request):
+    username  =str(request.user.username)
+    news = News.objects.filter(author=username)
+    return render(request,'userdetail.html',{'News':news})
+
+def user_article(request,username):
+    news = News.objects.filter(author=username)
+    return render(request,'user_articles.html',{'News':news,'username':username})
+
+
+
+def news_create(request):
     # if this is a POST request we need to process the form data
-    context={}
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
-        form = NewsForm(request.POST)
+        form = NewNewsForm(request.POST)
         if form.is_valid():
-            context['News'] = form.cleaned_data['query']
-            context['label'] = predict_class(form.cleaned_data['query'])
-    else:
-        form = NewsForm()
-    context['form'] = form
-    return render(request, 'Predict.html',context)
+            title = form.cleaned_data['title']
+            text = form.cleaned_data['text']
+            label = predict_class(text)
+            author = str(request.user.username)
+            article = News(title=title,text=text,author=author,label=label)
+            article.save()
+            return redirect('user')
+
+    form = NewNewsForm()
+    return render(request, 'news_form.html',{'form':form})

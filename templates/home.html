@@ -15,7 +15,7 @@
                 <span id="date">
              {{new.date}}
            </span>
-                <div id="author" align="right">—  {{new.author}} </div>
+                <a href="{% url 'user_article' new.author %}"><div id="author" align="right">—  {{new.author}} </div></a>
             </div>
         </div>
 

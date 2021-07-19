@@ -17,4 +17,7 @@
         </blockquote>
     </div>
 </div>
+{% if request.user.username ==  news.author %}
+<a href ='{% url "del_news" news.id %}'><button class="btn btn-danger " type="button">Delete</button></a>
+{% endif %}
 {% endblock %} {% endblock %}

@@ -1,5 +1,5 @@
 from news.views import HomeListView,NewsDetailView, news_create
-from news.views import loginView,registerView,logoutUser,user_article,self_article,news_create
+from news.views import loginView,registerView,logoutUser,user_article,self_article,news_create,del_article
 from django.urls import path,include
 
 
@@ -11,6 +11,8 @@ urlpatterns = [
     path('logout/',logoutUser, name='logout'),
     path('user/', self_article, name='user'),
     path('user/<str:username>', user_article, name='user_article'),
-    path('form/', news_create, name='newscreate')
+    path('form/', news_create, name='newscreate'),
+    path('news_detail/<int:id>/delete',del_article,name = 'del_news'),
+
 
 ]

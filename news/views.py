@@ -80,3 +80,14 @@ def news_create(request):
 
     form = NewNewsForm()
     return render(request, 'news_form.html',{'form':form})
+
+
+def del_article(request,id):
+    if request.user.is_authenticated:
+        article = News.objects.get(id = id)
+        if request.user.username == article.author:
+        #additional check
+            article.delete()
+        else :
+            return redirect('home')
+    return redirect('user')

@@ -4,7 +4,7 @@ import numpy as np
 
 def predict_class(str):
     encoded = encode(str)
-    model = load_model('./model/LTSM/model')
+    model = load_model('./model/NEW_LSTM_evenBETTER/model')
     encoded_arr = np.array(encoded)
     label = int(model.predict_classes(encoded_arr))
     return label
